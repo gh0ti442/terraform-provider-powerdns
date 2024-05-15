@@ -285,7 +285,7 @@ func (client *Client) detectAPIVersion() (int, error) {
 
 // ListZones returns all Zones of server, without records
 func (client *Client) ListZones() ([]ZoneInfo, error) {
-	req, err := client.newRequest("GET", "/servers/localhost/zones", nil)
+	req, err := client.newRequest("GET", "/servers/NME/zones", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -308,7 +308,7 @@ func (client *Client) ListZones() ([]ZoneInfo, error) {
 
 // GetZone gets a zone
 func (client *Client) GetZone(name string) (ZoneInfo, error) {
-	req, err := client.newRequest("GET", fmt.Sprintf("/servers/localhost/zones/%s", name), nil)
+	req, err := client.newRequest("GET", fmt.Sprintf("/servers/NME/zones/%s", name), nil)
 	if err != nil {
 		return ZoneInfo{}, err
 	}
@@ -338,7 +338,7 @@ func (client *Client) GetZone(name string) (ZoneInfo, error) {
 
 // ZoneExists checks if requested zone exists
 func (client *Client) ZoneExists(name string) (bool, error) {
-	req, err := client.newRequest("GET", fmt.Sprintf("/servers/localhost/zones/%s", name), nil)
+	req, err := client.newRequest("GET", fmt.Sprintf("/servers/NME/zones/%s", name), nil)
 	if err != nil {
 		return false, err
 	}
@@ -367,7 +367,7 @@ func (client *Client) CreateZone(zoneInfo ZoneInfo) (ZoneInfo, error) {
 		return ZoneInfo{}, err
 	}
 
-	req, err := client.newRequest("POST", "/servers/localhost/zones", body)
+	req, err := client.newRequest("POST", "/servers/NME/zones", body)
 	if err != nil {
 		return ZoneInfo{}, err
 	}
@@ -402,7 +402,7 @@ func (client *Client) UpdateZone(name string, zoneInfo ZoneInfoUpd) error {
 		return err
 	}
 
-	req, err := client.newRequest("PUT", fmt.Sprintf("/servers/localhost/zones/%s", name), body)
+	req, err := client.newRequest("PUT", fmt.Sprintf("/servers/NME/zones/%s", name), body)
 	if err != nil {
 		return err
 	}
@@ -426,7 +426,7 @@ func (client *Client) UpdateZone(name string, zoneInfo ZoneInfoUpd) error {
 
 // DeleteZone deletes a zone
 func (client *Client) DeleteZone(name string) error {
-	req, err := client.newRequest("DELETE", fmt.Sprintf("/servers/localhost/zones/%s", name), nil)
+	req, err := client.newRequest("DELETE", fmt.Sprintf("/servers/NME/zones/%s", name), nil)
 	if err != nil {
 		return err
 	}
@@ -474,7 +474,7 @@ func (client *Client) ListRecords(zone string) ([]Record, error) {
 	}
 
 	if zoneInfo == nil {
-		req, err := client.newRequest("GET", fmt.Sprintf("/servers/localhost/zones/%s", zone), nil)
+		req, err := client.newRequest("GET", fmt.Sprintf("/servers/NME/zones/%s", zone), nil)
 		if err != nil {
 			return nil, err
 		}
@@ -579,7 +579,7 @@ func (client *Client) ReplaceRecordSet(zone string, rrSet ResourceRecordSet) (st
 		RecordSets: []ResourceRecordSet{rrSet},
 	})
 
-	req, err := client.newRequest("PATCH", fmt.Sprintf("/servers/localhost/zones/%s", zone), reqBody)
+	req, err := client.newRequest("PATCH", fmt.Sprintf("/servers/NME/zones/%s", zone), reqBody)
 	if err != nil {
 		return "", err
 	}
@@ -612,7 +612,7 @@ func (client *Client) DeleteRecordSet(zone string, name string, tpe string) erro
 		},
 	})
 
-	req, err := client.newRequest("PATCH", fmt.Sprintf("/servers/localhost/zones/%s", zone), reqBody)
+	req, err := client.newRequest("PATCH", fmt.Sprintf("/servers/NME/zones/%s", zone), reqBody)
 	if err != nil {
 		return err
 	}
@@ -643,7 +643,7 @@ func (client *Client) DeleteRecordSetByID(zone string, recID string) error {
 }
 
 func (client *Client) setServerVersion() error {
-	req, err := client.newRequest("GET", "/servers/localhost", nil)
+	req, err := client.newRequest("GET", "/servers/NME", nil)
 	if err != nil {
 		return err
 	}

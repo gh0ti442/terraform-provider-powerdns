@@ -1,3 +1,8 @@
+## 1.5.1 (Unreleased)
+
+FEATURES:
+  * **Added NME
+
 ## 1.5.0 (Unreleased)
 
 FEATURES:
